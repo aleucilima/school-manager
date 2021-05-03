@@ -1,0 +1,14 @@
+{
+  "teachers": [
+    {
+      "id": 1,
+      "avatar_url": "http://google.com",
+      "name": "sdfasfa",
+      "birth": 766454400000,
+      "schooling": "university",
+      "type_class": "presential",
+      "services": "JavaScript, React, CSS",
+      "created_at": 1620073399204
+    }
+  ]
+}
