@@ -13,7 +13,12 @@ module.exports = {
         return age
     },
 
-    graduation: function(){
-        //Deve retornar o grau de escolaridade
+    graduation: function (degree){
+        switch(degree) {
+            case ('H'): return 'Ensino Médio Completo'
+            case ('G'): return 'Ensino Superior Completo'
+            case ('M'): return 'Mestrado'
+            case ('D'): return 'Doutorado'
+        }
     }
 }
