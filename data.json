@@ -3,12 +3,32 @@
     {
       "id": 1,
       "avatar_url": "http://google.com",
-      "name": "sdfasfa",
+      "name": "Aleuci Lima",
       "birth": 766454400000,
-      "schooling": "university",
+      "graduation": "university",
+      "type_class": "distance_learning",
+      "services": "JavaScript, React, CSS",
+      "created_at": 1620241577469
+    },
+    {
+      "id": 2,
+      "avatar_url": "http://google.com",
+      "name": "Aleuci Lima",
+      "birth": 949363200000,
+      "graduation": "high_school",
       "type_class": "presential",
       "services": "JavaScript, React, CSS",
-      "created_at": 1620073399204
+      "created_at": 1620242590999
+    },
+    {
+      "id": 3,
+      "avatar_url": "http://google.com",
+      "name": "Mailson",
+      "birth": 915148800000,
+      "graduation": "doctorate_degree",
+      "type_class": "presential",
+      "services": "musculação",
+      "created_at": 1620243091458
     }
   ]
 }
