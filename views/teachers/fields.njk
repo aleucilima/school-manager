@@ -1,21 +1,35 @@
 <div class="item">
     <div>Avatar URL</div>
     <div>
-        <input type="url" name="avatar_url" placeholder="http://">
+        <input 
+            type="url" 
+            name="avatar_url" 
+            placeholder="http://"
+            value="{{ teacher.avatar_url }}"    
+        >
     </div>
 </div>
 
 <div class="item">
     <div>Nome completo</div>
     <div>
-        <input type="text" name="name" placeholder="Nome do professor">
+        <input 
+            type="text" 
+            name="name" 
+            placeholder="Nome do professor"
+            value="{{ teacher.name }}"
+        >
     </div>
 </div>
 
 <div class="item">
     <div>Data de nascimento</div>
     <div>
-        <input type="date" name="birth">
+        <input 
+            type="date" 
+            name="birth"
+            value="{{ teacher.birth }}"
+        >
     </div>
 </div>
 
@@ -54,15 +68,38 @@
 <div class="item">
     <div>Tipo de aula</div>
     <div>
-        <span><input type="radio" name="type_class" value="presential" checked> Presencial</span>
-        <span><input type="radio" name="type_class" value="distance_learning"> À distância</span>
+        <span>
+            <input 
+                type="radio" 
+                name="type_class" 
+                value="presential" 
+                {% if teacher.type_class == 'presential' %}
+                checked
+                {% endif %}
+                > Presencial
+        </span>
+        <span>
+            <input 
+                type="radio" 
+                name="type_class" 
+                value="distance_learning"
+                {% if teacher.type_class == 'distance_learning' %}
+                checked
+                {% endif %}
+                > À distância
+        </span>
     </div>
 </div>
 
 <div class="item">
     <div>Área de atuação</div>
     <div>
-        <input type="text" name="services" placeholder="Separe os especialidades por vírgula">
+        <input 
+            type="text" 
+            name="services" 
+            placeholder="Separe os especialidades por vírgula"
+            value="{{ teacher.services }}"
+        >
     </div>
 </div>
 
