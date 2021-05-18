@@ -53,7 +53,7 @@ exports.post = (request, response) => {
     })
 }
 
-exports.edit = (request,response) => {
+exports.edit = (request, response) => {
     const { id } = request.params
 
     const foundTeacher = data.teachers.find((teacher) => teacher.id == id)
@@ -66,4 +66,32 @@ exports.edit = (request,response) => {
     }
 
     return response.render('teachers/edit', { teacher })
+}
+
+exports.put = (request, response) => {
+    const { id } = request.body
+    let index = 0
+
+    const foundTeacher = data.teachers.find((teacher, foundIndex) => {
+        if (instructor.id == id) {
+            index = foundIndex
+            return true
+        }
+    })
+
+    if(!foundTeacher) return response.send('Instructor not found')
+
+    const instructor = {
+        ...foundTeacher,
+        ...request.body,
+        birth: Date.parse(request.body.birth)
+    }
+
+    data.instructor[index] = instructor
+
+    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+        if (err) return response.send('Write error!')
+
+        return response.redirect(`/teachers/${id}`)
+    })
 }
