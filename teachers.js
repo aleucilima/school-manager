@@ -73,7 +73,7 @@ exports.put = (request, response) => {
     let index = 0
 
     const foundTeacher = data.teachers.find((teacher, foundIndex) => {
-        if (instructor.id == id) {
+        if (teacher.id == id) {
             index = foundIndex
             return true
         }
@@ -81,13 +81,13 @@ exports.put = (request, response) => {
 
     if(!foundTeacher) return response.send('Instructor not found')
 
-    const instructor = {
+    const teacher = {
         ...foundTeacher,
         ...request.body,
         birth: Date.parse(request.body.birth)
     }
 
-    data.instructor[index] = instructor
+    data.teachers[index] = teacher
 
     fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
         if (err) return response.send('Write error!')
