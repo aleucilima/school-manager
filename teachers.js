@@ -99,13 +99,13 @@ exports.update = (request, response) => {
 exports.delete = (request, response) => {
     const { id } = request.body
 
-    const filteredTeachers = data.teachers.filter((teachers) => teacher.id != id)
+    const filteredTeachers = data.teachers.filter((teacher) => teacher.id != id)
 
     data.teachers = filteredTeachers
 
     fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
         if (err) return response.send('Write file error!')
 
-        return response.redirect('/instructors')
+        return response.redirect('/teachers')
     })
 }
