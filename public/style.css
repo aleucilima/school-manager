@@ -184,3 +184,8 @@ select {
     padding: 4px 16px 4px 0px;
     border-radius: 4px;
 }
+
+#form-delete button[type="submit"] {
+    margin-top: 8px;
+    background-color: rgb(241, 109, 109);
+}

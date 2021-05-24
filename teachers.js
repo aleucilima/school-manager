@@ -68,7 +68,7 @@ exports.edit = (request, response) => {
     return response.render('teachers/edit', { teacher })
 }
 
-exports.put = (request, response) => {
+exports.update = (request, response) => {
     const { id } = request.body
     let index = 0
 
@@ -93,5 +93,19 @@ exports.put = (request, response) => {
         if (err) return response.send('Write error!')
 
         return response.redirect(`/teachers/${id}`)
+    })
+}
+
+exports.delete = (request, response) => {
+    const { id } = request.body
+
+    const filteredTeachers = data.teachers.filter((teachers) => teacher.id != id)
+
+    data.teachers = filteredTeachers
+
+    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+        if (err) return response.send('Write file error!')
+
+        return response.redirect('/instructors')
     })
 }

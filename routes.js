@@ -20,7 +20,9 @@ routes.get('/teachers/:id/edit', teachers.edit)
 
 routes.post('/teachers', teachers.post)
 
-routes.put('/teachers', teachers.put)
+routes.put('/teachers', teachers.update)
+
+routes.delete('/teachers', teachers.delete)
 
 routes.get('/students', (request, response) => {
     return response.render('students')
