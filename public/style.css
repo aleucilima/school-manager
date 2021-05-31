@@ -203,7 +203,7 @@ select {
 }
 
 .table-container thead tr th {
-    text-align: left;
+    text-align: center;
 }
 
 td, th {
@@ -219,17 +219,18 @@ th {
 
 tbody tr:last-child td {
     border-bottom: none;
+    text-align: center;
 }
 
 tbody tr td:first-child {
     display: grid;
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 16px 1fr;
     align-items: center;
 }
 
 tbody tr td:first-child span {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     background-position: center;
     background-size: cover;
     border-radius: 50%;
@@ -248,6 +249,15 @@ tbody tr td:last-child a {
     font-weight: bold;
 }
 
-.table-container thead tr th:last-child, td:last-child {
-    text-align: center;
+tbody tr #services-table {
+    padding: 8px 16px;
+    background-color: var(--secondary-color);
+    border-radius: 16px;
+    color: #fff;
+    margin-right: 4px;
+    margin-top: 8px;
+    display: inline-block;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
 }
