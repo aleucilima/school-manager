@@ -18,7 +18,32 @@
                             {{ student.name }}
                         </td>
                         <td>{{ student.email }}</td>
-                        <td>{{ student.graduation }}</td>
+                        <td>
+                        {% if student.graduation == 'fifth' %}
+                            5º Ano do Ensino Fundamental        
+                        {% endif %}
+                        {% if student.graduation == 'sixth' %}
+                            6º Ano do Ensino Fundamental        
+                        {% endif %}
+                        {% if student.graduation == 'seventh' %}
+                            7º Ano do Ensino Fundamental        
+                        {% endif %}
+                        {% if student.graduation == 'eighth' %}
+                            8º Ano do Ensino Fundamental        
+                        {% endif %}
+                        {% if student.graduation == 'ninth' %}
+                            9º Ano do Ensino Fundamental        
+                        {% endif %}
+                        {% if student.graduation == 'first' %}
+                            1º Ano do Ensino Médio        
+                        {% endif %}
+                        {% if student.graduation == 'second' %}
+                            2º Ano do Ensino Médio        
+                        {% endif %}
+                        {% if student.graduation == 'third' %}
+                            3º Ano do Ensino Médio        
+                        {% endif %}
+                        </td>
                         <td><a href="/students/{{student.id}}">Ver</a></a></td>
                     </tr>
                 {% endfor %}

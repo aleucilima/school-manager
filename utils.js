@@ -22,7 +22,7 @@ module.exports = {
         }
     },
 
-    studentGraduation: function(degree) {
+    grade: function(degree) {
         switch (degree) {
             case ('fifth'): return '5º Ano do Ensino Fundamental'
             case ('sixth'): return '6º Ano do Ensino Fundamental'

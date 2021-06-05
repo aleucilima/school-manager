@@ -17,9 +17,16 @@
             </div>
 
             <div class="item">
-                <div>Data de nascimento</div>
+                <div>Email</div>
                 <div>
-                    {{ student.age }}
+                    {{ student.email }}
+                </div>
+            </div>
+
+            <div class="item">
+                <div>Aniversário</div>
+                <div>
+                    {{ student.birth }}
                 </div>
             </div>
 
@@ -29,6 +36,14 @@
                     {{ student.graduation }}
                 </div>
             </div>
+
+            <div class="item">
+                <div>Carga horária semanal</div>
+                <div>
+                    {{ student.workload }}
+                </div>
+            </div>
+            
 
             <a href="/students/{{ student.id }}/edit" class="button">Editar</a>
 
