@@ -1,27 +1,13 @@
 const fs = require('fs')
-const data = require('./data.json')
-const { age, graduation, date } = require('./utils')
+const data = require('../data.json')
+const { age, graduation, date } = require('../utils')
 
 exports.index = (request, response) => {
     return response.render('teachers/index', { teachers:data.teachers })
 }
 
-exports.show = (request, response) => {
-    const { id } = request.params
-
-    const foundTeacher = data.teachers.find((teacher) => teacher.id == id)
-
-    if(!foundTeacher) return response.send('Teacher not found')
-
-    const teacher = {
-        ...foundTeacher,
-        age: age(foundTeacher.birth),
-        graduation: graduation(foundTeacher.graduation),
-        services: foundTeacher.services.split(','),
-        created_at: new Intl.DateTimeFormat("pt-BR").format(foundTeacher.created_at)
-    }
-
-    return response.render('teachers/show', { teacher })
+exports.create = (request, response) => {
+    return response.render('teachers/create')
 }
 
 exports.post = (request, response) => {
@@ -55,6 +41,24 @@ exports.post = (request, response) => {
 
         return response.redirect('/teachers')
     })
+}
+
+exports.show = (request, response) => {
+    const { id } = request.params
+
+    const foundTeacher = data.teachers.find((teacher) => teacher.id == id)
+
+    if(!foundTeacher) return response.send('Teacher not found')
+
+    const teacher = {
+        ...foundTeacher,
+        age: age(foundTeacher.birth),
+        graduation: graduation(foundTeacher.graduation),
+        services: foundTeacher.services.split(','),
+        created_at: new Intl.DateTimeFormat("pt-BR").format(foundTeacher.created_at)
+    }
+
+    return response.render('teachers/show', { teacher })
 }
 
 exports.edit = (request, response) => {
