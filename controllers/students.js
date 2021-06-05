@@ -1,6 +1,6 @@
 const fs = require('fs')
 const data = require('../data.json')
-const { age, graduation, date } = require('../utils')
+const { age, date, studentGraduation } = require('../utils')
 
 exports.index = (request, response) => {
     return response.render('students/index', { students:data.students })
@@ -18,21 +18,19 @@ exports.post = (request, response) => {
             return response.send('Please, fill all fields')
     }
 
-    let { avatar_url, name, birth, graduation, type_class, services } = request.body
+    birth = Date.parse(request.body.birth)
 
-    birth = Date.parse(birth)
-    const created_at = Date.now()
-    const id = Number(data.students.length + 1)
+    let id = 1
+    const lastStudent = data.students[data.students.length - 1]
+
+    if(lastStudent) {
+        id = lastStudent.id + 1
+    }
 
     data.students.push({
         id,
-        avatar_url,
-        name,
-        birth,
-        graduation,
-        type_class,
-        services,
-        created_at
+        ...request.body, 
+        birth
     })
     
     
@@ -46,16 +44,14 @@ exports.post = (request, response) => {
 exports.show = (request, response) => {
     const { id } = request.params
 
-    const foundstudent = data.students.find((student) => student.id == id)
+    const foundStudent = data.students.find((student) => student.id == id)
 
-    if(!foundstudent) return response.send('student not found')
+    if(!foundStudent) return response.send('Student not found')
 
     const student = {
-        ...foundstudent,
-        age: age(foundstudent.birth),
-        graduation: graduation(foundstudent.graduation),
-        services: foundstudent.services.split(','),
-        created_at: new Intl.DateTimeFormat("pt-BR").format(foundstudent.created_at)
+        ...foundStudent,
+        age: age(foundStudent.birth),
+        graduation: studentGraduation(foundStudent.graduation),
     }
 
     return response.render('students/show', { student })
@@ -64,13 +60,13 @@ exports.show = (request, response) => {
 exports.edit = (request, response) => {
     const { id } = request.params
 
-    const foundstudent = data.students.find((student) => student.id == id)
+    const foundStudent = data.students.find((student) => student.id == id)
 
-    if(!foundstudent) return response.send('student not found')
+    if(!foundStudent) return response.send('Student not found')
 
     const student = {
-        ...foundstudent,
-        birth: date(foundstudent.birth)
+        ...foundStudent,
+        birth: date(foundStudent.birth).iso
     }
 
     return response.render('students/edit', { student })
@@ -80,17 +76,17 @@ exports.update = (request, response) => {
     const { id } = request.body
     let index = 0
 
-    const foundstudent = data.students.find((student, foundIndex) => {
+    const foundStudent = data.students.find((student, foundIndex) => {
         if (student.id == id) {
             index = foundIndex
             return true
         }
     })
 
-    if(!foundstudent) return response.send('Instructor not found')
+    if(!foundStudent) return response.send('Instructor not found')
 
     const student = {
-        ...foundstudent,
+        ...foundStudent,
         ...request.body,
         birth: Date.parse(request.body.birth)
     }
@@ -107,9 +103,9 @@ exports.update = (request, response) => {
 exports.delete = (request, response) => {
     const { id } = request.body
 
-    const filteredstudents = data.students.filter((student) => student.id != id)
+    const filteredStudents = data.students.filter((student) => student.id != id)
 
-    data.students = filteredstudents
+    data.students = filteredStudents
 
     fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
         if (err) return response.send('Write file error!')

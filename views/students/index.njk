@@ -5,8 +5,9 @@
        <a href="/students/create">Novo</a>
         <table width="100%">
             <thead>
-                <th>Professor</th>
-                <th>Atendimento</th>
+                <th>Estudante</th>
+                <th>Email</th>
+                <th>Ano escolar</th>
                 <th>Ação</th>
             </thead>
             <tbody>
@@ -16,7 +17,8 @@
                             <span style="background-image: url({{ student.avatar_url }})"></span>
                             {{ student.name }}
                         </td>
-                        <td>{{ student.services }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.graduation }}</td>
                         <td><a href="/students/{{student.id}}">Ver</a></a></td>
                     </tr>
                 {% endfor %}

@@ -142,7 +142,7 @@ header {
 
 /* FORM */
 
-input {
+input, select {
     width: 100%;
     outline: none;
     color: #555;
@@ -198,6 +198,11 @@ select {
     box-sizing: border-box;
 }
 
+.table-container > a {
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
 .table-container table {
     border-spacing: 0;
 }
@@ -238,7 +243,7 @@ tbody tr td:first-child span {
     border: 2px solid white;
 }
 
-tbody tr td:last-child a {
+tbody tr td:last-child a, .table-container a {
     background-color: var(--primary-color);
     padding: 8px 16px;
     text-decoration: none;
@@ -247,17 +252,4 @@ tbody tr td:last-child a {
     font-size: 12px;
     border-radius: 4px;
     font-weight: bold;
-}
-
-tbody tr #services-table {
-    padding: 8px 16px;
-    background-color: var(--secondary-color);
-    border-radius: 16px;
-    color: #fff;
-    margin-right: 4px;
-    margin-top: 8px;
-    display: inline-block;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 12px;
 }

@@ -30,29 +30,6 @@
                 </div>
             </div>
 
-            <div class="item">
-                <div>Tipo de aula</div>
-                <div>
-                    {{ 'Presencial' if student.type_class == 'presential' else 'À distância' }}
-                </div>
-            </div>
-
-            <div class="item">
-                <div>Área de atuação</div>
-                <div>
-                    {% for service in student.services %}
-                        <span>{{ service }}</span>
-                    {% endfor %}
-                </div>
-            </div>
-
-             <div class="item">
-                <div>Desde</div>
-                <div>
-                    {{ student.created_at }}
-                </div>
-            </div>
-
             <a href="/students/{{ student.id }}/edit" class="button">Editar</a>
 
         </section>

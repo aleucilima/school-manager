@@ -16,8 +16,19 @@
         <input 
             type="text" 
             name="name" 
-            placeholder="Nome do professor"
+            placeholder="Nome do estudante"
             value="{{ student.name }}"
+        >
+    </div>
+</div>
+
+<div class="item">
+    <div>Email</div>
+    <div>
+        <input 
+            type="email" 
+            name="email" 
+            value="{{ student.email }}"
         >
     </div>
 </div>
@@ -34,71 +45,68 @@
 </div>
 
 <div class="item">
-    <div>Grau de escolaridade</div>
+    <div>Ano escolar</div>
     <div>
         <select name="graduation">
-            <option value="H"
-                {% if student.graduation == 'H' %}
+            <option value="fifth"
+                {% if student.graduation == 'fifth' %}
                     selected
-                {% endif%}
-                >Ensino Médio Completo
+                {% endif %}
+                >5º Ano do Ensino Fundamental
             </option>
-            <option value="G"
-                {% if student.graduation == 'G' %}
+            <option value="sixth"
+                {% if student.graduation == 'sixth' %}
                     selected
-                {% endif%}
-                >Ensino Superior Completo
+                {% endif %}
+                >6º Ano do Ensino Fundamental
             </option>
-            <option value="M"
-                {% if student.graduation == 'M' %}
+            <option value="seventh"
+                {% if student.graduation == 'seventh' %}
                     selected
-                {% endif%}
-                >Mestrado
+                {% endif %}
+                >7º Ano do Ensino Fundamental
             </option>
-            <option value="D"
-                {% if student.graduation == 'D' %}
+            <option value="eighth"
+                {% if student.graduation == 'eighth' %}
                     selected
-                {% endif%}
-                >Doutorado
+                {% endif %}
+                >8º Ano do Ensino Fundamental
+            </option>
+            <option value="ninth"
+                {% if student.graduation == 'ninth' %}
+                    selected
+                {% endif %}
+                >9º Ano do Ensino Fundamental
+            </option>
+            <option value="first"
+                {% if student.graduation == 'first' %}
+                    selected
+                {% endif %}
+                >1º Ano do Ensino Médio
+            </option>
+            <option value="second"
+                {% if student.graduation == 'second' %}
+                    selected
+                {% endif %}
+                >2º Ano do Ensino Médio
+            </option>
+            <option value="third"
+                {% if student.graduation == 'third' %}
+                    selected
+                {% endif %}
+                >3º Ano do Ensino Médio
             </option>
         </select>
     </div>
 </div>
 
 <div class="item">
-    <div>Tipo de aula</div>
-    <div>
-        <span>
-            <input 
-                type="radio" 
-                name="type_class" 
-                value="presential" 
-                {% if student.type_class == 'presential' %}
-                checked
-                {% endif %}
-                > Presencial
-        </span>
-        <span>
-            <input 
-                type="radio" 
-                name="type_class" 
-                value="distance_learning"
-                {% if student.type_class == 'distance_learning' %}
-                checked
-                {% endif %}
-                > À distância
-        </span>
-    </div>
-</div>
-
-<div class="item">
-    <div>Área de atuação</div>
+    <div>Carga horária semanal</div>
     <div>
         <input 
-            type="text" 
-            name="services" 
-            placeholder="Separe os especialidades por vírgula"
-            value="{{ student.services }}"
+            type="number" 
+            name="workload"
+            value="{{ student.workload }}"
         >
     </div>
 </div>
