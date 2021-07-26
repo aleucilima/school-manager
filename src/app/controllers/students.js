@@ -1,113 +1,60 @@
-const { age, date, grade } = require('../../lib/utils')
+const { age, grade, date } = require('../../lib/utils')
+const db = require('../../config/db')
 
-exports.index = (request, response) => {
-    return response.render('students/index', { students:data.students })
-}
-
-exports.create = (request, response) => {
-    return response.render('students/create')
-}
-
-exports.post = (request, response) => {
-    const keys = Object.keys(request.body)
-
-    for(key of keys) {
-        if (request.body[key] == '')
-            return response.send('Please, fill all fields')
-    }
-
-    birth = Date.parse(request.body.birth)
-
-    let id = 1
-    const lastStudent = data.students[data.students.length - 1]
-
-    if(lastStudent) {
-        id = lastStudent.id + 1
-    }
-
-    data.students.push({
-        id,
-        ...request.body, 
-        birth
-    })
-    
-    
-    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
-        if (err) return response.send('Write file error!')
-
-        return response.redirect('/students')
-    })
-}
-
-exports.show = (request, response) => {
-    const { id } = request.params
-
-    const foundStudent = data.students.find((student) => student.id == id)
-
-    if(!foundStudent) return response.send('Student not found')
-
-    const student = {
-        ...foundStudent,
-        birth: date(foundStudent.birth).birthDay,
-        graduation: grade(foundStudent.graduation),
-    }
-
-    return response.render('students/show', { student })
-}
-
-exports.edit = (request, response) => {
-    const { id } = request.params
-
-    const foundStudent = data.students.find((student) => student.id == id)
-
-    if(!foundStudent) return response.send('Student not found')
-
-    const student = {
-        ...foundStudent,
-        birth: date(foundStudent.birth).iso
-    }
-
-    return response.render('students/edit', { student })
-}
-
-exports.update = (request, response) => {
-    const { id } = request.body
-    let index = 0
-
-    const foundStudent = data.students.find((student, foundIndex) => {
-        if (student.id == id) {
-            index = foundIndex
-            return true
+module.exports = {
+    index(request, response) {
+        return response.render('students/index')
+    },
+    create(request, response) {
+        return response.render('students/create')
+    },
+    post(request, response) {
+        const keys = Object.keys(request.body)
+        
+        for(key of keys) {
+            if (request.body[key] == '')
+                return response.send('Please, fill all fields')
         }
-    })
+        
+        const query = `
+            INSERT INTO teachers (
+                avatar_url,
+                name,
+                birth_date,
+                education_level,
+                class_type,
+                subjects_taught,
+                created_at
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+            RETURNING id
+        `
+        const values = [
 
-    if(!foundStudent) return response.send('Instructor not found')
+        ]
+    },
+    show(request, response) {
+        return
+    },
+    edit(request, response) {
+        return
+    },
+    put(request, response) {
+        const { id } = request.body
+        let index = 0
+    
+        const foundStudent = data.students.find((student, foundIndex) => {
+            if (student.id == id) {
+                index = foundIndex
+                return true
+            }
+        })
+        return
+    },
+    delete(request, response) {
+        const { id } = request.body
+    
+        const filteredStudents = data.students.filter((student) => student.id != id)
 
-    const student = {
-        ...foundStudent,
-        ...request.body,
-        birth: Date.parse(request.body.birth)
+        return
     }
-
-    data.students[index] = student
-
-    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
-        if (err) return response.send('Write error!')
-
-        return response.redirect(`/students/${id}`)
-    })
-}
-
-exports.delete = (request, response) => {
-    const { id } = request.body
-
-    const filteredStudents = data.students.filter((student) => student.id != id)
-
-    data.students = filteredStudents
-
-    fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
-        if (err) return response.send('Write file error!')
-
-        return response.redirect('/students')
-    })
 }
