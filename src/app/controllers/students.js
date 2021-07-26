@@ -1,6 +1,4 @@
-const fs = require('fs')
-const data = require('../data.json')
-const { age, date, grade } = require('../utils')
+const { age, date, grade } = require('../../lib/utils')
 
 exports.index = (request, response) => {
     return response.render('students/index', { students:data.students })
