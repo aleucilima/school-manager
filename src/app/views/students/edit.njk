@@ -12,8 +12,7 @@
 
             <form method="POST" action="/students?_method=PUT">
                 <h3>Editar Professor(a)</h3>    
-            {% include "students/fields.njk" %}
-
+                {% include "students/fields.njk" %}
                 <input type="hidden" name="id" value={{ student.id }}>
             </form>
             
