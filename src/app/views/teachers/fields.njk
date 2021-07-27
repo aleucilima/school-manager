@@ -38,25 +38,24 @@
     <div>
         <select name="graduation">
             <option value="H"
-                {% if teacher.graduation = 'H' %}
+                {% if teacher.graduation == 'H'%}
                     selected
-                {% endif %}
-                >Ensino Médio Completo
+                {% endif %}>Ensino Médio Completo 
             </option>
             <option value="G"
-                {% if teacher.graduation = 'G' %}
+                {% if teacher.graduation == 'G' %}
                     selected
                 {% endif %}
                 >Ensino Superior Completo
             </option>
             <option value="M"
-                {% if teacher.graduation = 'M' %}
+                {% if teacher.graduation == 'M' %}
                     selected
                 {% endif %}
                 >Mestrado
             </option>
             <option value="D"
-                {% if teacher.graduation = 'D' %}
+                {% if teacher.graduation == 'D' %}
                     selected
                 {% endif %}
                 >Doutorado
@@ -73,7 +72,7 @@
                 type="radio" 
                 name="type_class" 
                 value="presential" 
-                {% if teacher.type_class = 'presential' %}
+                {% if teacher.type_class == 'presential' %}
                 checked
                 {% endif %}
                 > Presencial
@@ -83,7 +82,7 @@
                 type="radio" 
                 name="type_class" 
                 value="distance_learning"
-                {% if teacher.type_class = 'distance_learning' %}
+                {% if teacher.type_class == 'distance_learning' %}
                 checked
                 {% endif %}
                 > À distância

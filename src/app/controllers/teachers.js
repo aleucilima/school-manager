@@ -32,7 +32,7 @@ module.exports = {
         request.body.avatar_url,
         request.body.name, 
         date(request.body.birth).iso,
-        request.body.graduation, 
+        graduation(request.body.graduation), 
         request.body.type_class,
         request.body.services,
         date(Date.now()).iso
